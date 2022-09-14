@@ -1,0 +1,61 @@
+---
+title: "01_Bartels_Alan_2022_markdown"
+author: "Alan Bartels"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question 1
+Load quakes with data(quakes). Show what’s there with str() and summary(). 
+```{r quakes}
+data(quakes)
+str(quakes)
+summary(quakes)
+```
+What do you see? 
+Quakes is a data frame object with 1000 rows and five columns describing 
+earthquakes. Each column is a vector describing a specific attribute of
+earthquakes. These are labelled: lat, long, depth, mag, and station. These
+vectors are classed as numeric, numeric, integer, numeric, and integer
+respectively.
+
+# Question 2
+Show the entirety of column `long`
+```{r long}
+quakes$long
+```
+
+# Question 3
+Apply `unique()`. What unique stations are there? Use `length()` with `unique()` to determine how many stations there are.
+```{r unique}
+unique(quakes$stations)
+length(unique(quakes$stations))
+```
+
+# Question 4
+Using `range()`, what is the range of depths where quakes occur?
+```{r range}
+range(quakes$depth)
+```
+# Question 5
+Where was the earthquake of largest magnitude found? 
+```{r max}
+max_mag_index <- which(quakes$mag == max(quakes$mag))
+quakes[max_mag_index,1:2]
+```
+Meta 1. For some of you, this week was your first experience with R (or even programming at all) - how did it feel to connect concepts to a novel set of problems. For those who have experience with R, was this a cakewalk or challenging? How did it feel to shake off the cobwebs?
+
+This homework came pretty easily. Simple functions, variable setting, it feels good to get these cobwebs off. Pathing issues when I moved files around proved my greatest challenge, but I think I've gotten the hang of it now. 
+
+Meta 2. How much time did this take you, roughly?
+
+One hour. 
+
+Meta 3. Please give yourself a weak/sufficient/strong assessment on this assignment. Feel free to comment on why.
+
+I think I did sufficiently on this assignment, if I am able to get the github submission working I might give myself a strong. 
+
