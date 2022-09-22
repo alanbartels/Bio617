@@ -1,0 +1,80 @@
+---
+title: "02_Bartels_Alan_2022"
+author: "Alan Bartels"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r load libraries, include = FALSE}
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(forcats)
+library(ggridges)
+
+theme_set(theme_bw(base_size=12))
+
+ice <- read_csv("http://biol607.github.io/homework/data/NH_seaice_extent_monthly_1978_2016.csv") %>%
+  mutate(Month_Name = factor(Month_Name),
+         Month_Name = fct_reorder(Month_Name, Month))
+```
+# Part 2
+```{r boxplots}
+ice_extent <- ggplot(data = ice, 
+                     mapping = aes(group = Month_Name,
+                                   x = Extent,
+                                   y = Month_Name))
+ice_extent + geom_boxplot(fill = "turquoise")
+```
+
+# Part 3
+
+```{r ridgelines}
+ice_extent + geom_density_ridges(fill = "turquoise")
+```
+What do you learn that is different than the boxplot?
+
+With ridgelines, one gets a visual of the frequency distribution of the sea ice
+extent for a given month. For example, February and August do not look dissimilar
+to other months in their box plot graph. However, in the ridgeline graph, one
+can see that the distribution of sea ice extent during February and August 
+appear to be bimodal, something that is not apparent in the box plot graph.
+
+# Part 4
+Making Groups from the Continuous
+```{r monthly groups}
+ice_by_month <- ggplot(data = ice, 
+                       mapping = aes(
+                         group = Month_Name,
+                         x = Year,
+                         y = Extent
+                       ))
+ice_by_month <- ice_by_month + geom_line()
+
+ice_by_month + facet_wrap(vars(cut_interval(Month, n = 4)))
+```
+
+```{r annual groups}
+annual_ice_extent <- ggplot(data = ice, 
+                            mapping = aes(
+                              group = Year,
+                              x = Month_Name,
+                              y = Extent
+                            ))
+annual_ice_graph <- annual_ice_extent + geom_line()
+
+annual_ice_graph + facet_wrap(vars(cut_interval(Month, n = 4)))
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
