@@ -43,3 +43,24 @@ sum(1:10) |> #cmd-shift-m
 
 #### If you don't know how to code something, write it out! ####
 
+# This is the pipe from magrittr
+library(magrittr)
+sum(1:10)%>%
+  as.character()
+
+# use the magrittr pape to make 55 the 2nd arguement
+sum(1:10)%>%
+  as.character()%>%
+  paste("this is the answer:", .)
+
+# the native pipe requires a named arguement and uses _
+sum(1:10) |>
+  as.character() |>
+  paste("this is the answer", a = _)
+
+# Let's sum 1:10 and then get 100 random numbbers with a mean of sum(1:10)
+# using a nromal dist
+
+sum(1:10) |>
+  rnorm(n=100, mean = _)
+
