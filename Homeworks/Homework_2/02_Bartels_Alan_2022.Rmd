@@ -59,7 +59,7 @@ ice_by_month <- ice_by_month + geom_line()
 ice_by_month + facet_wrap(vars(cut_interval(Month, n = 4)))
 ```
 
-# Part 4
+# Part 5
 Use that Color!
 ```{r annual groups}
 annual_ice_extent <- ggplot(data = ice, 
@@ -86,6 +86,7 @@ annual_ice_graph
 ```
 
 Meta 1. 
+
 I am definitely more educated on what makes a good graph, scenarios in which to use specific types of graphs etc. However, I am a bit overwhelmed with the number of ggplot tools available and their individual ability to manipulate certain graph features, but their different ways of doing things. I'd like to get to know one tool well, learn all of it's capabilities, and then add new ones, rather than what I found myself doing which was googling how to do something, and then finding 3 different ways of achieving the goal, each done a new way that might require reorganization of previous code. 
 
 Meta 2. 
@@ -99,6 +100,7 @@ How much time did this take?
 This took me a while longer, about 3hrs. 
 
 Meta 4. 
+
 I give myself a sufficient assessment, I didn't successfully implement many of the IYKYK or extra credits, but I did learn a lot through my process of failure. 
 
 
